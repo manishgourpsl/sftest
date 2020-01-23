@@ -1,0 +1,7 @@
+<apex:page controller="RemoteDemoClass"  docType="html-5.0">
+     <script type="text/javascript">
+    
+    </script>
+ Field1 :  <input id="theTextInput1" type="text" name="theTextInput1" />
+ Field 2 :  <input id="theTextInput2" type="text" name="theTextInput2" />
+</apex:page>

@@ -1,0 +1,117 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false">
+  <html>
+      <head>
+          
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+      </head>
+      <body>
+          <div id="app">
+
+          </div>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+          
+          <script type="text/jsx">
+    /** @jsx React.DOM */
+        var ADTextBox = React.createClass({
+            render : function(){
+                return <input type="text"/>;
+            }
+
+        });
+
+          
+              var SearchBar = React.createClass({
+                   getInitialState: function() {
+                        return {searchKey: ""};
+                },
+                    searchHandler: function(event) {
+                        var searchKey = event.target.value;
+                        this.setState({searchKey: searchKey});
+                        this.props.searchHandler(searchKey);
+                    },
+                  
+                  
+        render: function () {
+            return (
+                <input type="search" onChange={this.searchHandler}/>
+            );
+        }
+    });
+          
+          var Header = React.createClass({
+        render: function () {
+            return (
+                <h1>{this.props.text}</h1>
+            );
+        }
+    });
+                     
+           
+            
+            var EmployeeListItem = React.createClass({
+    render: function () {
+        return (
+            <li>
+                <a href={"#employees/" + this.props.employee.id}>
+                    {this.props.employee.firstName} {this.props.employee.lastName}
+                </a>
+            </li>
+        );
+    }
+});
+
+var EmployeeList = React.createClass({
+    render: function () {
+        var items = this.props.employees.map(function (employee) {
+            return (
+                <EmployeeListItem key={employee.id} employee={employee} />
+            );
+        });
+        return (
+            <ul>
+                {items}
+            </ul>
+        );
+    }
+});
+                  var CompositeControl = React.createClass({
+                  searchHandler:function(key) {
+                    alert('Search key: ' + key);
+                },
+    
+                     render : function() {
+                                     var employees = [
+                        {firstName: 'Christophe', lastName: 'Coenraets'},
+                        {firstName: 'Lisa', lastName: 'Jones'},
+                        {firstName: 'John', lastName: 'Smith'}
+                    ];
+                         
+                         return <div><Header text="Header Text"/>
+                             <SearchBar searchHandler={this.searchHandler}/>
+                             <ADTextBox/>
+                             <EmployeeList employees={employees}/>
+                             </div>
+                         }
+                     
+             });
+          
+          
+            
+            
+          //React.render(<ADTextBox/>,document.getElementById('app'),function(){
+          //console.log('rendered');
+          //        })
+        
+        React.render(<CompositeControl/>,document.getElementById('app'),function(){
+            console.log('rendered');
+
+        })
+        
+        
+    </script>
+          
+      </body>
+  </html>
+</apex:page>

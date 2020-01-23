@@ -1,0 +1,7 @@
+<apex:page Controller="MyDemoController">
+    <div>
+        Sample Text :  <apex:outputLink value="{!URLFOR($Action.Account.New)}">
+    Create New Account
+</apex:outputLink>
+    </div>
+</apex:page>
